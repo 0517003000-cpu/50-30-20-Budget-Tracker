@@ -35,4 +35,5 @@ localStorage.setItem("budgetData", JSON.stringify(data));
 
 });
 
-});
+}); 
+
