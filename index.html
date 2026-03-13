@@ -24,11 +24,13 @@
 </table>
 
 <div class="calculator-link">
+
 <p>Need help calculating your monthly budget?</p>
 
 <a href="https://0517003000-cpu.github.io/Monthly-Budget-Calc/" target="_blank">
 <button>Open Monthly Budget Calculator</button>
 </a>
+
 </div>
 
 </div>
@@ -36,7 +38,7 @@
 
 <div class="budget-container">
 
-<!-- ESSENTIAL -->
+<!-- ESSENTIAL EXPENSES -->
 <table class="budget-table">
 
 <tr>
@@ -49,19 +51,17 @@
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-<tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 
 </table>
 
 
-<!-- NON ESSENTIAL -->
+<!-- NON ESSENTIAL EXPENSES -->
 <table class="budget-table">
 
 <tr>
 <th colspan="2" contenteditable="true">Non-Essential Expenses</th>
 </tr>
 
-<tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
@@ -85,11 +85,54 @@
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 <tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
-<tr><td contenteditable="true"></td><td contenteditable="true"></td></tr>
 
 </table>
 
 </div>
+
+
+<script>
+
+// select editable elements
+const editable = document.querySelectorAll('[contenteditable="true"]');
+
+// load saved data
+window.onload = function(){
+
+let saved = JSON.parse(localStorage.getItem("budgetData"));
+
+if(saved){
+
+editable.forEach((cell, index) => {
+
+if(saved[index]){
+cell.innerText = saved[index];
+}
+
+});
+
+}
+
+};
+
+// save data when editing
+editable.forEach((cell)=>{
+
+cell.addEventListener("input", ()=>{
+
+let data = [];
+
+editable.forEach(c=>{
+data.push(c.innerText);
+});
+
+localStorage.setItem("budgetData", JSON.stringify(data));
+
+});
+
+});
+
+</script>
 
 </body>
 </html>
